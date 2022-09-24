@@ -26,7 +26,9 @@ export type UpdateKeyI = {
 
 export interface NoteModelI {
     id: number
-    list: NoteI[]
+    pinned: NoteI[]
+    unpinned: NoteI[]
+    all: NoteI[]
     db: {
         add(data: NoteI): Promise<number>
         update(data: NoteI): void

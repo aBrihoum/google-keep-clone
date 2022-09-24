@@ -19,7 +19,11 @@ export class SharedService {
   private get = {
     notes: () => {
       this.Notes.notesList$.subscribe({
-        next: (result: NoteI[]) => this.note.list = result.reverse(),
+        next: (result: NoteI[]) => {
+          this.note.pinned = result.filter(x => x.pinned === true).reverse()
+          this.note.unpinned = result.filter(x => x.pinned === false).reverse()
+          this.note.all = result.reverse()
+        },
         error: error => console.error(error)
       })
     },
@@ -40,7 +44,9 @@ export class SharedService {
 
   note: NoteModelI = {
     id: -1,
-    list: [],
+    pinned: [],
+    unpinned: [],
+    all: [],
     db: {
       add: (data: NoteI) => this.Notes.add(data),
       update: (data: NoteI) => this.Notes.update(data, this.note.id),
@@ -50,7 +56,7 @@ export class SharedService {
       clone: () => this.Notes.clone(this.note.id),
       delete: () => this.Notes.delete(this.note.id),
       trash: () => {
-        this.note.db.updateKey({ trashed: true })
+        this.note.db.updateKey({ trashed: true, archived: false })
         this.snackBar({ action: 'trashed', opposite: 'restored' }, { trashed: false }, this.note.id)
       },
     },

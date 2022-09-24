@@ -1,4 +1,6 @@
 .mainContainer {
+  margin-top: 45px;
+
   .pb-80 {
     padding-bottom: 80px;
   }
@@ -162,18 +164,13 @@
 .modal-container {
   position: fixed;
   display: none;
-  z-index: 1;
+  z-index: 101;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgb(32, 33, 36, 0.85);
   overflow: hidden;
-
-  @media (max-width:660px) {
-    z-index: 101;
-  }
 
   .modal {
     position: absolute;

@@ -1,27 +1,24 @@
 <section>
     <section #mainContainer class="mainContainer">
-        <div class="pb-80"
-            [hidden]="!(Shared.note.list | notesPinned: true | notesTools:(currentPage.label ? currentPage.label : currentPage.archive? 'archived' : ( currentPage.trash?'trashed':  'simple'))).length">
-            <p _title>pinned</p>
-            <ng-container [ngTemplateOutlet]="noteTemplate" [ngTemplateOutletContext]="{isPinned :true}">
+        <div class="pb-80" [hidden]="!(Shared.note.pinned | notesTools:currentPageName).length">
+            <p #title _title>pinned</p>
+            <ng-container [ngTemplateOutlet]="noteTemplate" [ngTemplateOutletContext]="{notes:Shared.note.pinned}">
             </ng-container>
         </div>
-        <div class="pb-80"
-            [hidden]="!(Shared.note.list | notesPinned: false | notesTools:(currentPage.label ? currentPage.label : currentPage.archive? 'archived' : ( currentPage.trash?'trashed':  'simple'))).length">
-            <p _title>other</p>
-            <ng-container [ngTemplateOutlet]="noteTemplate" [ngTemplateOutletContext]="{isPinned :false}">
+        <div [hidden]="!(Shared.note.unpinned | notesTools:currentPageName).length">
+            <p #title _title>other</p>
+            <ng-container [ngTemplateOutlet]="noteTemplate" [ngTemplateOutletContext]="{notes:Shared.note.unpinned}">
             </ng-container>
         </div>
     </section>
 </section>
 
-<section
-    *ngIf="!(Shared.note.list | notesTools:(currentPage.label ? currentPage.label : currentPage.archive? 'archived' : ( currentPage.trash?'trashed':  'simple'))).length">
+<section *ngIf="!(this.Shared.note.all | notesTools:currentPageName).length">
     <div class="no-notes">
         <div class="image"></div>
         <div>
-            <span class="text">Notes you {{ currentPage.archive? 'archive' : ( currentPage.trash?'trash':'add')}} appear
-                here</span>
+            <span class="text">Notes you {{ currentPage.archive? 'archive' : ( currentPage.trash?'trash':'add')}}
+                appear here</span>
         </div>
     </div>
 </section>
@@ -35,12 +32,9 @@
 </div>
 
 <!--*  note template -->
-<ng-template #noteTemplate let-isPinned="isPinned">
-    <div #noteEl [attr.data-notes-type]="isPinned ? 'pinned' : 'other'"
-        [class.mx-auto]="Shared.noteViewType.value === 'list' ">
-        <!-- data-notes-type -> for brikcs.js -->
-        <ng-container
-            *ngFor="let note of Shared.note.list | notesPinned: isPinned | notesTools:(currentPage.label ? currentPage.label : currentPage.archive? 'archived' : ( currentPage.trash?'trashed':  'simple')) ;trackBy: trackBy">
+<ng-template #noteTemplate let-notes="notes">
+    <div #noteEl [class.mx-auto]="Shared.noteViewType.value === 'list' ">
+        <ng-container *ngFor="let note of notes | notesTools:currentPageName ;trackBy: trackBy">
             <div #noteEL class="note-container">
                 <span class="note-badge" *ngIf="currentPage.label && (note.archived || note.trashed)"
                     [innerText]="note.archived ? 'archive': (note.trashed ? 'trash' : '') "></span>

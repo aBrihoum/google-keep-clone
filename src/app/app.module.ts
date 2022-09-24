@@ -9,7 +9,6 @@ import { InputComponent } from './components/input/input.component';
 import { ph } from './pipes/ph.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { CboxSortPipe } from './pipes/cbox-sort.pipe';
-import { NotesPinnedPipe } from './pipes/notes-pinned.pipe';
 import { CboxDonePipe } from './pipes/cbox-done.pipe';
 import { NotesToolsPipe } from './pipes/notes-tools.pipe';
 
@@ -23,7 +22,6 @@ import { NotesToolsPipe } from './pipes/notes-tools.pipe';
     InputComponent,
     ph,
     CboxSortPipe,
-    NotesPinnedPipe,
     CboxDonePipe,
     NotesToolsPipe,
   ],

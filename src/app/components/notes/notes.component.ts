@@ -18,12 +18,14 @@ export class NotesComponent implements OnInit {
   @ViewChild("modalContainer") modalContainer!: ElementRef<HTMLInputElement>
   @ViewChild("modal") modal!: ElementRef<HTMLInputElement>
   @ViewChildren('noteEl') noteEl!: QueryList<ElementRef<HTMLDivElement>>
+  @ViewChildren('title') title!: QueryList<ElementRef<HTMLDivElement>>
   //? -----------------------------------------------------
   currentPage = {
     archive: false,
     trash: false,
     label: undefined
   }
+  currentPageName = ''
   labels: LabelI[] = []
   bgColors = bgColors
   bgImages = bgImages
@@ -36,6 +38,7 @@ export class NotesComponent implements OnInit {
     let totalNoteWidth = this.noteWidth + gutter
     let containerWidth = this.mainContainer.nativeElement.clientWidth
     let numberOfColumns = 0
+    let masonryWidth = '0px'
     // --
     if (this.Shared.noteViewType.value === 'grid') {
       this.noteWidth = 240
@@ -49,19 +52,15 @@ export class NotesComponent implements OnInit {
     document.documentElement.style.setProperty('--note-width', this.noteWidth + "px")
     // --
     const sizes = [{ columns: numberOfColumns, gutter: gutter }]
-    this.noteEl.toArray().forEach(el => brikcs(el.nativeElement))
+    this.noteEl.toArray().forEach(el => { brikcs(el.nativeElement); if (el.nativeElement.style.width) masonryWidth = el.nativeElement.style.width })
     function brikcs(node: HTMLDivElement) { const instance = Bricks({ container: node, packed: 'data-packed', sizes: sizes, position: false }); instance.pack() }
     window.onresize = () => { if (this.Shared.noteViewType.value === 'list') this.Shared.noteViewType.next('grid') }
     //? we allign the titles to the masonry width
-    // ik its bad using document.x
-    let title: NodeListOf<HTMLParagraphElement> = document.querySelectorAll('[_title]')
-    let container = Array.from(document.querySelectorAll('[data-notes-type]') as NodeListOf<HTMLParagraphElement>).filter(x => x.clientWidth)
-    title.forEach(x => {
-      if (this.Shared.noteViewType.value === 'list') x.style.maxWidth = container[0]?.style.width
-      else x.style.maxWidth = ''
+    this.title.forEach(el => {
+      if (this.Shared.noteViewType.value === 'list') el.nativeElement.style.maxWidth = masonryWidth
+      else el.nativeElement.style.maxWidth = ''
     })
   }
-
 
   //? modal  -----------------------------------------------------------
 
@@ -214,7 +213,10 @@ export class NotesComponent implements OnInit {
   }
   // ?--------------------------------------------------------------
 
-  ngAfterViewChecked() { this.buildMasonry() }
+  ngAfterViewChecked() {
+    this.buildMasonry()
+
+  }
 
   ngOnInit(): void {
     this.Shared.closeSideBar.subscribe(() => { setTimeout(() => { this.buildMasonry() }, 200) })
@@ -228,6 +230,7 @@ export class NotesComponent implements OnInit {
       else if (url instanceof ActivationEnd) {
         this.currentPage.label = url.snapshot.params['name']
       }
+      this.currentPageName = this.currentPage.label ? this.currentPage.label : this.currentPage.archive ? 'archived' : (this.currentPage.trash ? 'trashed' : 'home')
     })
   }
 }
