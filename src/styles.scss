@@ -1,0 +1,109 @@
+:root {
+  --note-width: 240px
+}
+
+.main {
+  background-color: #202124;
+  color: white;
+}
+
+.H:hover {
+  outline: none !important;
+  border-radius: 50% !important;
+  background-color: rgba(232, 234, 237, 0.08) !important;
+  cursor: pointer !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.mx-auto {
+  margin-inline: auto;
+  transition: all 0.7s;
+}
+
+.pop:hover::before {
+  content: attr(data-pop);
+  position: absolute;
+  width: max-content;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 37px;
+  background-color: rgb(0 0 0 / 61%);
+  padding: 3px 9px;
+  font-size: 15px;
+  font-family: 'Google Sans';
+  border-radius: 5px;
+
+}
+
+
+/* ===== Scrollbar CSS ===== */
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, .3);
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 1px 1px 1px 6px;
+  box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 7%);
+}
+
+*::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
+}
+
+//
+img,
+svg {
+  vertical-align: middle;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+//? fonts
+@import "./assets/fonts/fonts.scss";
+
+//? snackbar AKA toast
+@import "~node-snackbar/dist/snackbar.css";
+
+//? cbox
+@import "./assets/scss/checkboxes.scss";
+
+//? icons
+@import "./assets/scss/icons.scss";
+
+//? labels
+@import "./assets/scss/labels.scss";
+
+//? tooltips
+@import "./assets/scss/tooltips.scss";

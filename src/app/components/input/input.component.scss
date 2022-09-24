@@ -1,0 +1,159 @@
+.main-container {
+  margin: 24px auto 16px auto;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 60%), 0 2px 6px 2px rgb(0 0 0 / 30%);
+  position: relative;
+}
+
+.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.25 !important;
+}
+
+//? placeholder  ---------------------
+.placeholder {
+  .input {
+    padding: 21px 6px 11px 16px;
+    font-family: "Google Sans Light 2";
+    height: 46px;
+    width: 100%;
+    background-color: #202124;
+    border: 1px solid #5f6368;
+    border-radius: 8px;
+
+    &:focus-visible {
+      outline-width: 0;
+    }
+
+    &::placeholder {
+      letter-spacing: 0.00625em;
+      font-family: "Google Sans";
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5rem;
+      color: rgba(255, 255, 255, 0.702);
+    }
+  }
+
+  %icons {
+    height: 46px;
+    position: absolute;
+    top: 1px;
+    width: 46px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.54;
+
+    &:hover {
+      opacity: 0.87;
+    }
+
+    &.pop::before {
+      top: 45px
+    }
+  }
+
+  .check {
+    @extend %icons;
+    background-image: url(/assets/images/svg/check.svg);
+    right: 121px;
+  }
+
+  .paint {
+    @extend %icons;
+    background-image: url(/assets/images/svg/paint.svg);
+    right: 67px;
+  }
+
+  .picture {
+    @extend %icons;
+    background-image: url(/assets/images/svg/picture.svg);
+    right: 13px;
+  }
+}
+
+//? new note  ------------------------
+.note-main {
+  border: 1px solid #5f6368;
+  border-radius: 8px;
+  background-color: #202124;
+
+  .note-container {
+    background-position-x: right;
+    background-position-y: bottom;
+    background-size: cover;
+
+    //? title
+    .note-title {
+      padding: 10px 15px;
+      letter-spacing: 0.00625em;
+      font-family: "Google Sans";
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+
+      &.ph {
+        color: rgba(255, 255, 255, 0.6);
+        position: absolute;
+        width: 100%;
+        pointer-events: none;
+        padding-left: 11px;
+      }
+
+      &:focus-visible {
+        outline: 0;
+      }
+    }
+
+
+
+    //? note body
+    .note-body {
+      letter-spacing: 0.01428571em;
+      font-family: "Google Sans";
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.25rem;
+      min-height: 46px;
+      padding: 13px 16px 12px 16px;
+      max-height: 70vh;
+      overflow: auto;
+
+      &.ph {
+        color: rgba(255, 255, 255, 0.702);
+        font-weight: 500;
+        position: absolute;
+        width: 100%;
+        pointer-events: none;
+      }
+
+      &:focus-visible {
+        outline: 0;
+      }
+    }
+
+
+  }
+
+}
+
+.close-btn {
+  margin-right: 15px;
+  color: #dadce0;
+  letter-spacing: 0.01785714em;
+  font-family: "Google Sans";
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  height: 36px;
+  padding: 8px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(154, 160, 166, 0.039);
+  }
+}

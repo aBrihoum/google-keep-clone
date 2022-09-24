@@ -1,0 +1,162 @@
+<div #main [class.main-container]="!isEditing">
+    <!--? placeholder -->
+    <div #notePlaceholder (click)="notePhClick()" class="placeholder">
+        <input class="input" placeholder="Take a note…" type="text">
+        <div class="check H pop" data-pop="New list" data-top="37" (click)="isCbox.next(true)"></div>
+        <div class="paint H disabled pop" data-pop="New note with drawing"></div>
+        <div class="picture H disabled" data-pop="New note with image"></div>
+    </div>
+    <!--? new note -->
+    <div #noteMain class="note-main" hidden>
+        <div #noteContainer class="note-container">
+            <div [hidden]="noteTitle.innerHTML.length>0" class="note-title ph"> Title</div>
+            <div #noteTitle (input)="updateInputLength({title:noteTitle.innerHTML.length})" (paste)="pasteEvent($event)"
+                class="note-title" contenteditable="true" spellcheck="true">
+            </div>
+            <!--? note || checkboxes -->
+            <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate"></ng-container>
+            <!--? note || checkboxes -->
+            <div class="labels-container">
+                <ng-container *ngFor="let label of labels">
+                    <div class="label-container" *ngIf="label.added">
+                        <div class="label"><span>{{label.name}}</span>
+                            <div class="cancel-icon" (click)="label.added = !label.added"></div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div #notePin data-pinned="false" [class.pinned]="notePin.dataset['pinned'] === 'true'" class="pin-icon H pop"
+            (click)="notePin.dataset['pinned'] === 'false' ? notePin.dataset['pinned']='true': notePin.dataset['pinned']='false'"
+            [attr.data-pop]="notePin.dataset['pinned'] === 'false' ? 'Pin note':'Unpin note' ">
+        </div>
+        <div class="icons-container" *ngIf="!isTrashed;else trashed">
+            <div class="icons">
+                <div class="alarm H disabled pop" data-pop="Remind me"></div>
+                <div class="colab H disabled pop" data-pop="Collaborator"></div>
+                <div #colorMenuTtBtn class="color H pop" data-pop="Background Options"
+                    (click)="openTooltip(colorMenuTtBtn,colorMenuTt)">
+                </div>
+                <div class="image H disabled pop" data-pop="Add image"></div>
+                <div class="archive H pop" (click)="isArchived = true;saveNote()" data-pop="Archive"></div>
+                <div #moreMenuTtBtn class="more H pop" data-pop="More" (click)="openTooltip(moreMenuTtBtn,moreMenuTt)">
+                </div>
+                <div class="undo disabled pop" data-pop="Undo"></div>
+                <div class="undo r disabled"></div>
+            </div>
+            <div class="close-btn" (click)="saveNote()"> Close </div>
+        </div>
+        <ng-template #trashed>
+            <div class="icons-container min">
+                <div class="icons">
+                    <div class="delete H"></div>
+                    <div class="restore H"></div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<!--* templates -->
+<!--* note tempalte -->
+<ng-template #noteTemplate>
+    <div [hidden]="noteBody.innerHTML.length" class="note-body ph">Take a note…</div>
+    <div #noteBody (input)="updateInputLength({body:noteBody.innerHTML.length})" (paste)="pasteEvent($event)"
+        class="note-body" contenteditable="true" spellcheck="true">
+    </div>
+</ng-template>
+<!--* cboxes tempalte -->
+<ng-template #checkboxesTemplate>
+    <!--? isDone: false -->
+    <ng-container [ngTemplateOutlet]="cbox" [ngTemplateOutletContext]="{ isDone: false }"></ng-container>
+    <div class="cbox-ph-container">
+        <div class="cbox-plus-icon"></div>
+        <div class="cbox-note-container">
+            <div class="cbox-note ph">List item</div>
+            <div #cboxPh (keydown)="cboxPhKeyDown($event)" class="cbox-note" contenteditable="true" spellcheck="true">
+            </div>
+        </div>
+    </div>
+    <!--? isDone: true -->
+    <ng-container *ngIf="(checkBoxes | cboxDone:true).length">
+        <div class="hr"></div>
+        <div class="cbox-done-container" (click)="isCboxCompletedListCollapsed = !isCboxCompletedListCollapsed">
+            <div [class.rotate]="!isCboxCompletedListCollapsed" class="cbox-arrow"></div>
+            <div>
+                <span>({{(checkBoxes | cboxDone:true).length}}) Completed item</span>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!isCboxCompletedListCollapsed" [ngTemplateOutlet]="cbox"
+        [ngTemplateOutletContext]="{ isDone: true }">
+    </ng-container>
+
+    <!--* cbox tempalte -->
+    <ng-template let-isDone="isDone" #cbox>
+        <ng-container *ngFor="let cb of checkBoxes | cboxDone:isDone;let last = last">
+            <div class="cbox-container">
+                <div class="cbox-move-icon"></div>
+                <div [class.done]="cb.done" class="cbox-icon" (click)="cboxTools(cb.id).check()"></div>
+                <div class="cbox-note-container">
+                    <div #cboxInput [attr.data-cbox-last]="last" [class.cbox-done]="cb.done"
+                        (blur)="cboxTools(cb.id).update(cboxInput)" (keydown)="cBoxKeyDown($event,cb.id)"
+                        class="cbox-note" contenteditable="true" spellcheck="true" [innerHTML]="cb.data">
+                    </div>
+                </div>
+                <div class="cbox-cancel-icon H" (click)="cboxTools(cb.id!).remove()"></div>
+            </div>
+        </ng-container>
+    </ng-template>
+</ng-template>
+
+<!--? --------tooltips-------- -->
+
+<!--? more MENU -->
+<div #moreMenuTt data-tooltip="true" data-is-tooltip-open="false" class="moreMenu">
+    <div [hidden]="moreMenuEls.delete.disabled" (click)="moreMenu(moreMenuTt).trash()">
+        Delete note
+    </div>
+    <div #labelMenuBtn
+        (click)="this.Shared.closeTooltip(moreMenuTt);openTooltip(moreMenuTtBtn!.nativeElement,labelMenuTt)">
+        Add label
+    </div>
+    <!-- <div [hidden]="moreMenuEls.drawing.disabled">{{moreMenuEls.drawing.value}}</div> -->
+    <div [hidden]="moreMenuEls.copy.disabled" (click)="moreMenu(moreMenuTt).clone()">
+        Make a copy
+    </div>
+    <div (click)="moreMenu(moreMenuTt).toggleCbox()">
+        {{moreMenuEls.checkbox.value}}
+    </div>
+    <!-- <div [hidden]="moreMenuEls.gdocs.disabled">{{moreMenuEls.gdocs.value}}</div> -->
+</div>
+<!--? color MENU -->
+<div #colorMenuTt data-tooltip="true" data-is-tooltip-open="false" class="colorMenu">
+    <div class="first-row">
+        <ng-container *ngFor="let color of bgColors | keyvalue">
+            <div [attr.data-bg-color]="color.key" [style.background-color]="color.value"
+                (click)="colorMenu.bgColor(color.value)" [class.nocolor]="color.value === ''">
+            </div>
+        </ng-container>
+    </div>
+    <div class="second-row">
+        <ng-container *ngFor="let image of bgImages | keyvalue">
+            <div [attr.data-bg-image]="image.key" [style.background-image]="image.value | ph"
+                (click)="colorMenu.bgImage(image.value)" [class.noimage]="image.value === ''">
+            </div>
+        </ng-container>
+    </div>
+</div>
+<!--? label MENU -->
+<div #labelMenuTt data-tooltip="true" data-is-tooltip-open="false" class="labelMenu">
+    <div class="title">Label note</div>
+    <div class="search">
+        <input type="text" maxlength="50" placeholder="Enter label name">
+        <div class="search-icon"></div>
+    </div>
+    <div class="label-list-container">
+        <div class="label-list" *ngFor="let label of labels" (click)="label.added = !label.added">
+            <div [class.done]='label.added' class="check-icon"></div>
+            <div class="label-name">{{label.name}}</div>
+        </div>
+    </div>
+</div>

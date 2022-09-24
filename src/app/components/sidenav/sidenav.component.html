@@ -1,0 +1,63 @@
+<div sideBar class="main-sidebar">
+    <div>
+        <div [class.active]="router.url === '/'" class="item" routerLink="/">
+            <img src="./assets/images/svg/lamp.svg" alt="lamp" class="pic">
+            <span class="text">Notes</span>
+        </div>
+        <div class="item disabled">
+            <img src="./assets/images/svg/reminder.svg" alt="reminder" class="pic">
+            <span class="text">Reminders</span>
+        </div>
+
+
+        <div [class.active]="router.url === '/label/'+label.name" class="item" *ngFor="let label of Shared.label.list"
+            [routerLink]="['/label', label.name]">
+            <img src="./assets/images/svg/label-white.svg" alt="label" class="pic">
+            <span class="text">{{label.name}}</span>
+        </div>
+
+
+        <div class="item" (click)="openModal()">
+            <img src="./assets/images/svg/pen.svg" alt="pen" class="pic">
+            <span class="text">Edit labels</span>
+        </div>
+        <div [class.active]="router.url === '/archive'" class="item" routerLink="/archive">
+            <img src="./assets/images/svg/archive.svg" alt="archive" class="pic">
+            <span class="text">Archive</span>
+        </div>
+        <div [class.active]="router.url === '/trash'" routerLink="/trash" class="item">
+            <img src="./assets/images/svg/trash.svg" alt="trash" class="pic">
+            <span class="text">Trash</span>
+        </div>
+    </div>
+</div>
+
+<div #modalContainer class="modal-container">
+    <div #modal class="modal">
+        <div class="label-modal-main">
+            <div class="header">
+                <p>Edit labels</p>
+                <div class="input-container">
+                    <div #plusIcon class="plus-icon H" (click)="labelInput.value=''"></div>
+                    <input #labelInput (blur)="plusIcon.classList.toggle('cancel-icon')"
+                        (focus)="plusIcon.classList.toggle('cancel-icon')" (keydown.enter)="addLabel(labelInput)"
+                        type="text" placeholder="Create new label" maxlength="50" (input)="''">
+                    <div [style.display]="labelInput.value.length ? 'block' : 'none'" class="check-icon H"
+                        (click)="addLabel(labelInput)"></div>
+                </div>
+                <div #labelError class="error" hidden>Label already exists</div>
+                <div class="labels-container" *ngFor="let label of Shared.label.list">
+                    <div #labelIcon class="label-icon H" (click)="editLabel(label.id!).delete()"></div>
+                    <input (focus)="labelIcon.classList.toggle('trash-icon')" #labelInput
+                        (keydown.enter)="labelInput.blur()"
+                        (blur)="editLabel(label.id!).update(labelInput.value);labelIcon.classList.toggle('trash-icon')"
+                        [value]="label.name" type="text" placeholder="Enter label name" maxlength="50">
+                    <div class="pen-icon H" (click)="editLabel(label.id!).update(labelInput.value)"></div>
+                </div>
+            </div>
+            <div class="footer">
+                <div (click)="hideModal()" type="submit" tabindex="0">Done</div>
+            </div>
+        </div>
+    </div>
+</div>

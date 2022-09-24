@@ -1,0 +1,210 @@
+.main-container {
+  padding: 8px 8px;
+  box-shadow: inset 0 -1px 0 0 #5f6368;
+
+  .navbar {
+    display: flex;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    .first-col {
+      min-width: 232px;
+      display: flex;
+      align-items: center;
+      height: 48px;
+
+      @media (max-width: 612px) {
+        min-width: auto;
+      }
+
+      .pic-container {
+        margin: 0 4px;
+        padding: 12px;
+        width: 48px;
+        height: 48px;
+
+        .menu-icon {
+          margin-bottom: 12px;
+        }
+      }
+
+      .text {
+        color: rgba(255, 255, 255, 0.87);
+        font-family: "Product Sans";
+        font-size: 22px;
+        vertical-align: middle;
+        top: 0.5px;
+        line-height: 24px;
+        padding-left: 8px;
+        position: relative;
+      }
+
+      @media (max-width:500px) {
+
+        .keep-img,
+        .text {
+          display: none;
+        }
+      }
+    }
+
+    .sec-col {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      align-items: center;
+
+      @media (max-width:405px) {
+        justify-content: start;
+      }
+
+      .form-container {
+        padding-left: 10px;
+        padding-right: 30px;
+        width: 100%;
+
+        @media (max-width: 794px) {
+          display: none;
+        }
+
+        .form {
+          background: rgba(241, 243, 244, 0.24);
+          max-width: 722px;
+          border-radius: 8px;
+          border: 1px solid transparent;
+          position: relative;
+
+          .input-container {
+            margin-left: 54px;
+            margin-right: 49px;
+
+            .input {
+              color: rgba(255, 255, 255, 0.87);
+              background: transparent;
+              font-size: 16px;
+              font-family: "Google Sans Light 2";
+              height: 46px;
+              width: 100%;
+              border: 0;
+
+              &:focus-visible {
+                outline-width: 0;
+              }
+
+              &::placeholder {
+                color: #e8eaed;
+                font-weight: 100;
+              }
+            }
+          }
+
+          .btn {
+            width: 56px;
+            height: 46px;
+            background: none;
+            border: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &.left {
+              left: 0;
+            }
+          }
+
+          .pic {
+            padding: 8px;
+          }
+
+
+        }
+      }
+
+      .btns-container {
+        display: flex;
+
+        .refresh {
+          @extend %icons;
+          background-image: url(/assets/images/svg/refresh.svg);
+        }
+
+        .view {
+          @extend %icons;
+          background-image: url(/assets/images/svg/view.svg);
+        }
+
+        .settings {
+          @extend %icons;
+          background-image: url(/assets/images/svg/settings.svg);
+        }
+
+        .search {
+          @extend %icons;
+          background-image: url(/assets/images/svg/search.svg);
+          opacity: 1 !important;
+          display: none;
+
+          @media (max-width: 794px) {
+            display: block;
+          }
+        }
+      }
+    }
+
+    // third col
+    .th-col {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      padding: 0px 4px;
+      padding-left: 28px;
+
+      @media (max-width:405px) {
+        display: none;
+      }
+
+      .apps {
+        @extend %icons;
+        background-image: url(/assets/images/svg/apps.svg);
+        position: relative;
+        right: 2px;
+      }
+
+      .user-pic-container {
+        padding: 4px 6px;
+        display: inline-block;
+
+        .user-pic {
+          border-radius: 50%;
+          height: 32px;
+          width: 32px;
+          margin-bottom: 1px;
+        }
+      }
+    }
+  }
+}
+
+%icons {
+  height: 48px;
+  width: 48px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.54;
+  transition: opacity 0.218s linear;
+  position: relative;
+
+  &:hover {
+    opacity: 0.87;
+  }
+
+  &.pop::before {
+    top: 50px
+  }
+}
+
+.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.25 !important;
+}

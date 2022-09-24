@@ -1,0 +1,46 @@
+<section class="main-container">
+    <div class="navbar">
+        <div class="first-col">
+            <div class="pic-container H" (click)="closeSideBar()">
+                <img src="./assets/images/svg/menu.svg" class="menu-icon" alt="menu">
+            </div>
+            <div class="keep-img">
+                <img src="./assets/images/keep.png" width="40"
+                    srcset="./assets/images/keep.png 1x, ./assets/images/keep2x.png 2x" alt="keep">
+            </div>
+            <div>
+                <span class="text">Keep</span>
+            </div>
+        </div>
+        <div class="sec-col">
+            <div class="form-container">
+                <form #form23zSaZ class="form">
+                    <div class="input-container">
+                        <input class="input" autocomplete="off" placeholder="Search" value="" type="text">
+                    </div>
+                    <button class="btn" aria-label="Clear search" type="button">
+                        <img class="pic H d-none" src="./assets/images/svg/x-btn.svg" alt="x-btn">
+                    </button>
+                    <button class="btn left" aria-label="Clear search" type="button">
+                        <img class="pic H" src="./assets/images/svg/search.svg" alt="x-btn">
+                    </button>
+                </form>
+            </div>
+            <div class="btns-container">
+                <div class="search H pop" data-pop="Search"></div>
+                <div class="refresh H pop" data-pop="Refresh" (click)="refresh()"></div>
+                <div class="view H pop" data-pop="List view" (click)="view()"></div>
+                <div class="settings H pop disabled" data-pop="Settings"></div>
+            </div>
+        </div>
+
+        <div class="th-col">
+            <div class="apps H disabled pop" data-pop="Google Apps"></div>
+            <div class="user-pic-container">
+                <img class="user-pic" src="./assets/images/user.jpg"
+                    srcset="./assets/images/user.jpg 1x, ./assets/images/user2x.jpg 2x " alt="user-pic">
+            </div>
+        </div>
+    </div>
+
+</section>

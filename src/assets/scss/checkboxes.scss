@@ -1,0 +1,193 @@
+.cbox-ph-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 9px 0px 9px 24px;
+
+  &:hover {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: rgb(126 126 126 / 44%);
+  }
+}
+
+
+
+.cboxes {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+
+  &.min {
+    margin: 4px 16px 12px 16px;
+  }
+}
+
+.cbox-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 9px 0px;
+
+
+  &:hover {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: rgb(126 126 126 / 44%);
+
+    .cbox-move-icon:not(.hide),
+    .cbox-cancel-icon {
+      visibility: visible;
+    }
+  }
+
+}
+
+
+//? note body
+.cbox-note-container {
+  width: 88%;
+
+  &.small {
+    width: 172px
+  }
+}
+
+
+.cbox-note {
+  letter-spacing: 0.01428571em;
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding-left: 14px;
+  width: 100%;
+  transition: all 1s;
+
+  &.small {
+    padding-left: 0px;
+  }
+
+  &.min {
+    font-size: 0.750rem;
+  }
+
+  &.ph {
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    pointer-events: none;
+    width: 90%;
+    font-weight: 500;
+  }
+
+  &:focus-visible {
+    outline: 0;
+  }
+}
+
+
+//? note completed
+
+.cbox-done {
+  text-decoration: line-through;
+  color: #9aa0a6;
+}
+
+.cbox-done-container {
+  display: flex;
+  justify-content: flex-start;
+  color: #9aa0a6;
+  font-family: "Roboto", arial, sans-serif;
+  letter-spacing: 0.01428571em;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  cursor: pointer;
+  margin-left: 18px;
+  margin-bottom: 5px;
+}
+
+.cbox-done-container:hover>div {
+  color: #e8eaed;
+  opacity: 1;
+}
+
+.hr {
+  border-bottom: 1px solid rgba(250, 250, 250, 0.1);
+  margin: 14px 24px 14px 24px;
+}
+
+//? icons
+%ic {
+  background-size: 18px 18px !important;
+  height: 18px;
+  width: 18px;
+  opacity: 0.54;
+  outline: none;
+}
+
+.cbox-icon {
+  cursor: pointer;
+  @extend %ic;
+  background: url(/assets/images/svg/box.svg) no-repeat center;
+
+  &.small {
+    padding-left: 34px;
+  }
+
+  &.done {
+    background-image: url(/assets/images/svg/box-checked.svg) !important;
+  }
+
+  &:hover {
+    opacity: 0.87;
+  }
+}
+
+.cbox-plus-icon {
+  background: url(/assets/images/svg/plus.svg) no-repeat center;
+  @extend %ic;
+}
+
+.cbox-cancel-icon {
+  background: url(/assets/images/svg/cancel.svg) no-repeat center;
+  padding: 13px;
+  margin-right: 4px;
+  visibility: hidden;
+  @extend %ic;
+
+  &.small {
+    margin-right: 2px;
+  }
+
+  &:hover {
+    opacity: 0.87;
+  }
+}
+
+
+.cbox-move-icon {
+  background: url(/assets/images/svg/move.svg) no-repeat center;
+  cursor: move;
+  height: 24px;
+  width: 24px;
+  left: 0;
+  opacity: 0.54;
+  visibility: hidden;
+}
+
+.cbox-arrow {
+  background: url(/assets/images/svg/arrow.svg) no-repeat center;
+  height: 24px;
+  width: 24px;
+  opacity: 0.54;
+
+  &.rotate {
+    transform: rotate(90deg);
+  }
+}
