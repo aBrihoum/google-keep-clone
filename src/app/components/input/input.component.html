@@ -2,7 +2,7 @@
     <!--? placeholder -->
     <div #notePlaceholder (click)="notePhClick()" class="placeholder">
         <input class="input" placeholder="Take a note…" type="text">
-        <div class="check H pop" data-pop="New list" data-top="37" (click)="isCbox.next(true)"></div>
+        <div class="check H pop" data-pop="New list" (click)="isCbox.next(true)"></div>
         <div class="paint H disabled pop" data-pop="New note with drawing"></div>
         <div class="picture H disabled" data-pop="New note with image"></div>
     </div>
@@ -13,9 +13,10 @@
             <div #noteTitle (input)="updateInputLength({title:noteTitle.innerHTML.length})" (paste)="pasteEvent($event)"
                 class="note-title" contenteditable="true" spellcheck="true">
             </div>
-            <!--? note || checkboxes -->
-            <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate"></ng-container>
-            <!--? note || checkboxes -->
+            <!--? note OR checkboxes -->
+            <ng-container [ngTemplateOutlet]="isCbox.value ? checkboxesTemplate : noteTemplate">
+            </ng-container>
+            <!--? labels -->
             <div class="labels-container">
                 <ng-container *ngFor="let label of labels">
                     <div class="label-container" *ngIf="label.added">
@@ -30,6 +31,7 @@
             (click)="notePin.dataset['pinned'] === 'false' ? notePin.dataset['pinned']='true': notePin.dataset['pinned']='false'"
             [attr.data-pop]="notePin.dataset['pinned'] === 'false' ? 'Pin note':'Unpin note' ">
         </div>
+        <!--? icons -->
         <div class="icons-container" *ngIf="!isTrashed;else trashed">
             <div class="icons">
                 <div class="alarm H disabled pop" data-pop="Remind me"></div>
@@ -46,6 +48,7 @@
             </div>
             <div class="close-btn" (click)="saveNote()"> Close </div>
         </div>
+        <!--? icons if trashed -->
         <ng-template #trashed>
             <div class="icons-container min">
                 <div class="icons">
@@ -68,7 +71,8 @@
 <!--* cboxes tempalte -->
 <ng-template #checkboxesTemplate>
     <!--? isDone: false -->
-    <ng-container [ngTemplateOutlet]="cbox" [ngTemplateOutletContext]="{ isDone: false }"></ng-container>
+    <ng-container [ngTemplateOutlet]="cboxTemplate" [ngTemplateOutletContext]="{ isDone: false }">
+    </ng-container>
     <div class="cbox-ph-container">
         <div class="cbox-plus-icon"></div>
         <div class="cbox-note-container">
@@ -87,12 +91,12 @@
             </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="!isCboxCompletedListCollapsed" [ngTemplateOutlet]="cbox"
+    <ng-container *ngIf="!isCboxCompletedListCollapsed" [ngTemplateOutlet]="cboxTemplate"
         [ngTemplateOutletContext]="{ isDone: true }">
     </ng-container>
 
     <!--* cbox tempalte -->
-    <ng-template let-isDone="isDone" #cbox>
+    <ng-template let-isDone="isDone" #cboxTemplate>
         <ng-container *ngFor="let cb of checkBoxes | cboxDone:isDone;let last = last">
             <div class="cbox-container">
                 <div class="cbox-move-icon"></div>

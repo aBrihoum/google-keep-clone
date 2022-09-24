@@ -168,7 +168,7 @@ export class InputComponent implements OnInit {
   cboxPhKeyDown($event: KeyboardEvent) {
     $event.preventDefault()
     const isLetter = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"²^\\|,.<>\/?éèçµ]$/i.test($event.key)
-    // ex : if he clicked f1 for example, nothing would happen, otherwise : 
+    // ex : if he clicked the f1 btn for example, nothing would happen, otherwise : 
     if (!isLetter) return
     let enteredValue = $event.key
     this.addCheckBox(enteredValue) // a new checkbox will appair in the html
@@ -178,6 +178,15 @@ export class InputComponent implements OnInit {
     let sel = window.getSelection()
     if (el) sel?.selectAllChildren(el)
     sel?.collapseToEnd()
+  }
+
+  addCheckBox(data: string) {
+    this.checkBoxes.push({
+      done: false,
+      data: data,
+      id: this.checkBoxes.length
+    })
+    this.inputLength.next({ ...this.inputLength.value, cb: this.checkBoxes.length })
   }
 
   cBoxKeyDown($event: KeyboardEvent, id: number) {
@@ -192,14 +201,6 @@ export class InputComponent implements OnInit {
     }
   }
 
-  addCheckBox(data: string) {
-    this.checkBoxes.push({
-      done: false,
-      data: data,
-      id: this.checkBoxes.length
-    })
-    this.inputLength.next({ ...this.inputLength.value, cb: this.checkBoxes.length })
-  }
 
   cboxTools(id: number) {
     let i = this.checkBoxes.findIndex(x => x.id === id)
