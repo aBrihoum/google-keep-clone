@@ -68,7 +68,8 @@ export class InputComponent implements OnInit {
       this.inputLength.next({ title: 0, body: 0, cb: 0 })
       document.addEventListener('mousedown', this.mouseDownEvent)
     }
-    this.labels = this.Shared.label.list
+    this.labels = JSON.parse(JSON.stringify(this.Shared.label.list))
+    console.log(this.Shared.label.list)
     /*
     the correct way is to use `mousedown` because : 
     https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/

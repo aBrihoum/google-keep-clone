@@ -159,7 +159,7 @@ export class NotesComponent implements OnInit {
         this.Shared.note.db.clone()
       },
       openLabelMenu: (tooltipEl: HTMLDivElement) => {
-        this.labels = this.Shared.label.list
+        this.labels = JSON.parse(JSON.stringify(this.Shared.label.list))
         this.Shared.createTooltip(this.Ttbutton!, tooltipEl)
         this.Shared.note.db.get().then(note => {
           note.labels.forEach(noteLabel => {
