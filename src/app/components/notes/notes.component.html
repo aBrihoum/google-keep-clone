@@ -1,5 +1,5 @@
 <section>
-    <section #mainContainer class="mainContainer">
+    <section #mainContainer class="main-container">
         <div class="pb-80" [hidden]="!(Shared.note.pinned | notesTools:currentPageName).length">
             <p #title _title>pinned</p>
             <ng-container [ngTemplateOutlet]="noteTemplate" [ngTemplateOutletContext]="{notes:Shared.note.pinned}">
