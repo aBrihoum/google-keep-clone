@@ -28,6 +28,7 @@ export class InputComponent implements OnInit {
   @ViewChild("moreMenuTtBtn") moreMenuTtBtn?: ElementRef<HTMLDivElement> // needed in the html
   //? -----------------------------------------------------
   @Input() isEditing = false
+  @Input() noteToEdit: NoteI = {} as NoteI
   //? -----------------------------------------------------
   checkBoxes: CheckboxI[] = []
   labels: LabelI[] = []
@@ -115,7 +116,6 @@ export class InputComponent implements OnInit {
       archived: this.isArchived,
       trashed: this.isTrashed
     }
-    console.log(noteObj)
     if (noteObj.noteTitle.length || noteObj.noteBody && noteObj.noteBody?.length || this.checkBoxes.length) {
       if (this.isEditing) {
         this.Shared.note.db.update(noteObj)
@@ -223,26 +223,25 @@ export class InputComponent implements OnInit {
 
   //? isEditing  -----------------------------------------------------------
 
-  innerData() {
-    this.Shared.note.db.get().then(note => {
-      this.notePhClick()
-      this.noteTitle.nativeElement.innerHTML = note.noteTitle
-      if (this.noteBody) this.noteBody.nativeElement.innerHTML = note.noteBody!
-      this.notePin.nativeElement.dataset['pinned'] = String(note.pinned)
-      this.noteContainer.nativeElement.style.backgroundImage = note.bgImage
-      this.noteMain.nativeElement.style.backgroundColor = note.bgColor
-      this.noteMain.nativeElement.style.borderColor = note.bgColor
-      if (note.checkBoxes) this.checkBoxes = note.checkBoxes
-      this.isCbox.next(note.isCbox)
-      this.isArchived = note.archived
-      this.isTrashed = note.trashed
-      //
-      this.inputLength.next({ title: note.noteTitle.length, body: note.noteBody ? note.noteBody?.length : 0, cb: note.checkBoxes?.length! })
-      note.labels.forEach(noteLabel => {
-        let label = this.labels.find(x => x.name === noteLabel.name)
-        if (label) label.added = noteLabel.added
-      })
+  innerData(note: NoteI) {
+    this.notePhClick()
+    this.noteTitle.nativeElement.innerHTML = note.noteTitle
+    if (this.noteBody) this.noteBody.nativeElement.innerHTML = note.noteBody!
+    this.notePin.nativeElement.dataset['pinned'] = String(note.pinned)
+    this.noteContainer.nativeElement.style.backgroundImage = note.bgImage
+    this.noteMain.nativeElement.style.backgroundColor = note.bgColor
+    this.noteMain.nativeElement.style.borderColor = note.bgColor
+    if (note.checkBoxes) this.checkBoxes = note.checkBoxes
+    this.isCbox.next(note.isCbox)
+    this.isArchived = note.archived
+    this.isTrashed = note.trashed
+    //
+    this.inputLength.next({ title: note.noteTitle.length, body: note.noteBody ? note.noteBody?.length : 0, cb: note.checkBoxes?.length! })
+    note.labels.forEach(noteLabel => {
+      let label = this.labels.find(x => x.name === noteLabel.name)
+      if (label) label.added = noteLabel.added
     })
+    this.cd.detectChanges()
   }
 
   //? tooltip  -----------------------------------------------------------
@@ -311,9 +310,10 @@ export class InputComponent implements OnInit {
         this.moreMenuEls.copy.disabled = true
       }
     })
+    if (this.isEditing) {
+      this.innerData(this.noteToEdit)
+    }
   }
-
-  ngOnChanges() { if (this.isEditing) this.innerData() }
 
   ngOnInit(): void { }
 

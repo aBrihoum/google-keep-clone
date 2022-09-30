@@ -30,6 +30,7 @@ export class NotesComponent implements OnInit {
   bgColors = bgColors
   bgImages = bgImages
   noteWidth = 240
+  clickedNoteData: NoteI = {} as NoteI
   //? -----------------------------------------------------
   trackBy(item: any) { return item.id }
 
@@ -55,7 +56,7 @@ export class NotesComponent implements OnInit {
     this.noteEl.toArray().forEach(el => { brikcs(el.nativeElement); if (el.nativeElement.style.width) masonryWidth = el.nativeElement.style.width })
     function brikcs(node: HTMLDivElement) { const instance = Bricks({ container: node, packed: 'data-packed', sizes: sizes, position: false }); instance.pack() }
     window.onresize = () => { if (this.Shared.noteViewType.value === 'list') this.Shared.noteViewType.next('grid') }
-    //? we allign the titles to the masonry width
+    //? we align the titles to the masonry width
     this.title.forEach(el => {
       if (this.Shared.noteViewType.value === 'list') el.nativeElement.style.maxWidth = masonryWidth
       else el.nativeElement.style.maxWidth = ''
@@ -64,9 +65,10 @@ export class NotesComponent implements OnInit {
 
   //? modal  -----------------------------------------------------------
 
-  openModal(clickedNote: HTMLDivElement, noteId: number) {
-    this.Shared.note.id = noteId
-    this.clickedNote = clickedNote
+  openModal(clickedNote: HTMLDivElement, noteData: NoteI) {
+    this.Shared.note.id = noteData.id!
+    this.clickedNoteData = noteData
+    this.clickedNoteEl = clickedNote
     let modalContainer = this.modalContainer.nativeElement
     let modal = this.modal.nativeElement
     this.setModalStyling()
@@ -87,23 +89,23 @@ export class NotesComponent implements OnInit {
     }
   }
 
-  clickedNote!: HTMLDivElement // needed in setModalStyling()
+  clickedNoteEl!: HTMLDivElement // needed in setModalStyling()
   closeModal() {
     document.removeEventListener('mousedown', this.mouseDownEvent)
     let modalContainer = this.modalContainer.nativeElement
     this.setModalStyling()
     setTimeout(() => {
-      this.clickedNote.classList.remove('hide')
+      this.clickedNoteEl.classList.remove('hide')
       modalContainer.style.display = 'none'
     }, 300)
   }
 
   setModalStyling() {
-    let bouding = this.clickedNote.getBoundingClientRect()
+    let bounding = this.clickedNoteEl.getBoundingClientRect()
     let modal = this.modal.nativeElement
-    modal.style.transform = `translate(${bouding.x}px, ${bouding.y}px)`
-    modal.style.width = bouding.width + 'px'
-    modal.style.height = bouding.height + 'px'
+    modal.style.transform = `translate(${bounding.x}px, ${bounding.y}px)`
+    modal.style.width = bounding.width + 'px'
+    modal.style.height = bounding.height + 'px'
     modal.style.top = `0`
     modal.style.left = `0`
   }

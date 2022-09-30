@@ -26,7 +26,7 @@
 
 <div #modalContainer class="modal-container">
     <div #modal class="modal">
-        <app-input [isEditing]="true" *ngIf="modalContainer.style.display == 'block'">
+        <app-input [noteToEdit]="clickedNoteData" [isEditing]="true" *ngIf="modalContainer.style.display == 'block'">
         </app-input>
     </div>
 </div>
@@ -40,7 +40,7 @@
                     [innerText]="note.archived ? 'archive': (note.trashed ? 'trash' : '') "></span>
                 <div class="note-main"
                     [ngStyle]="{'background-color':note.bgColor,'border-color':note.bgColor,'background-image' : note.bgImage}">
-                    <div (mouseup)="openModal(noteEL,note.id!)">
+                    <div (mouseup)="openModal(noteEL,note)">
                         <div class="title">
                             <span [innerHTML]="note.noteTitle"></span>
                         </div>
