@@ -52,7 +52,7 @@ Checkout my article on dev.to explaining the steps & technique i used to create 
 </p>
 
 <p align="center">
-<a href="" target="_blank" rel="noopener noreferrer">
+<a href="https://dev.to/brihoum/i-made-a-google-keep-clone-with-most-of-its-features-using-angular-2bla" target="_blank" rel="noopener noreferrer">
 <img width="500" src="https://i.imgur.com/Vej5gLp.png">
 </a>
 </p>
