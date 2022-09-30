@@ -2,7 +2,7 @@ import { NoteI, CheckboxI } from '../../interfaces/notes';
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Input } from '@angular/core';
 import { bgImages, bgColors } from 'src/app/interfaces/tooltip';
 import { SharedService } from 'src/app/services/shared.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { LabelI } from 'src/app/interfaces/labels';
 type InputLengthI = { title?: number, body?: number, cb?: number }
 @Component({
@@ -115,6 +115,7 @@ export class InputComponent implements OnInit {
       archived: this.isArchived,
       trashed: this.isTrashed
     }
+    console.log(noteObj)
     if (noteObj.noteTitle.length || noteObj.noteBody && noteObj.noteBody?.length || this.checkBoxes.length) {
       if (this.isEditing) {
         this.Shared.note.db.update(noteObj)
@@ -292,9 +293,9 @@ export class InputComponent implements OnInit {
 
   //? -----------------------------------------------------------
 
-
+  saveNoteSubscription?: Subscription
   ngAfterViewInit() {
-    this.Shared.saveNote.subscribe(x => { if (x) this.saveNote() })
+    if (this.isEditing) { this.saveNoteSubscription = this.Shared.saveNote.subscribe(x => { if (x) this.saveNote() }) }
     //? ----------------------------------------------------------------
     this.isCbox.subscribe(value => {
       if (value) this.moreMenuEls.checkbox.value = 'Hide checkboxes'
@@ -315,5 +316,7 @@ export class InputComponent implements OnInit {
   ngOnChanges() { if (this.isEditing) this.innerData() }
 
   ngOnInit(): void { }
+
+  ngOnDestroy() { this.saveNoteSubscription?.unsubscribe() }
 
 }
