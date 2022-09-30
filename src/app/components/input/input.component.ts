@@ -14,7 +14,7 @@ export class InputComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef, public Shared: SharedService) { }
 
   @ViewChild("main") main!: ElementRef<HTMLDivElement>
-  //? Plceholder ----------------------------------------------------
+  //? Placeholder  ----------------------------------------------------
   @ViewChild("notePlaceholder") notePlaceholder!: ElementRef<HTMLDivElement>
   //? note  -----------------------------------------------------
   @ViewChild("noteMain") noteMain!: ElementRef<HTMLDivElement>
@@ -50,7 +50,7 @@ export class InputComponent implements OnInit {
       value: 'Show checkboxes'
     },
   }
-  //? plceholder  --------------------------------------------------
+  //? placeholder  --------------------------------------------------
 
   toggleNoteVisibility(condition: boolean) {
     if (condition) {
@@ -69,7 +69,6 @@ export class InputComponent implements OnInit {
       document.addEventListener('mousedown', this.mouseDownEvent)
     }
     this.labels = JSON.parse(JSON.stringify(this.Shared.label.list))
-    console.log(this.Shared.label.list)
     /*
     the correct way is to use `mousedown` because : 
     https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/
@@ -116,7 +115,7 @@ export class InputComponent implements OnInit {
       archived: this.isArchived,
       trashed: this.isTrashed
     }
-    if (noteObj.noteTitle.length !== 0 || noteObj.noteBody && noteObj.noteBody?.length !== 0 || this.checkBoxes.length !== 0) {
+    if (noteObj.noteTitle.length || noteObj.noteBody && noteObj.noteBody?.length || this.checkBoxes.length) {
       if (this.isEditing) {
         this.Shared.note.db.update(noteObj)
         this.Shared.closeModal.next(true)
@@ -172,7 +171,7 @@ export class InputComponent implements OnInit {
     // ex : if he clicked the f1 btn for example, nothing would happen, otherwise : 
     if (!isLetter) return
     let enteredValue = $event.key
-    this.addCheckBox(enteredValue) // a new checkbox will appair in the html
+    this.addCheckBox(enteredValue) // a new checkbox will appear in the html
     this.cd.detectChanges()
     let el = document.querySelector(`[data-cbox-last="true"]`)
     // we move the cursor to the end, so the user will just continue what he typed before
@@ -303,7 +302,7 @@ export class InputComponent implements OnInit {
     })
     //? ----------------------------------------------------------------
     this.inputLength.subscribe(x => {
-      if ((x.title && x.title > 0) || (x.body && x.body > 0) || (x.cb && x.cb > 0)) {
+      if ((x.title) || (x.body) || (x.cb)) {
         this.moreMenuEls.delete.disabled = false
         this.moreMenuEls.copy.disabled = false
       } else {

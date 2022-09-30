@@ -175,11 +175,9 @@ export class NotesComponent implements OnInit {
 
   colorMenu = {
     bgColor: (data: bgColors) => {
-      console.log(data)
       this.Shared.note.db.updateKey({ bgColor: data })
     },
     bgImage: (data: bgImages) => {
-      console.log(data)
       this.Shared.note.db.updateKey({ bgImage: `url(${data})` })
     }
   }
