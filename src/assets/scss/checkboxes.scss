@@ -22,7 +22,7 @@
   -webkit-line-clamp: 3;
 
   &.min {
-    margin: 4px 16px 12px 16px;
+    margin: 5px 0px 5px 13px;
   }
 }
 
@@ -49,10 +49,10 @@
 
 //? note body
 .cbox-note-container {
-  width: 88%;
+  width: 87%;
 
-  &.small {
-    width: 172px
+  &.min {
+    width: 76%
   }
 }
 
@@ -125,8 +125,6 @@
 //? icons
 %ic {
   background-size: 18px 18px !important;
-  height: 18px;
-  width: 18px;
   opacity: 0.54;
   outline: none;
 }
@@ -135,10 +133,8 @@
   cursor: pointer;
   @extend %ic;
   background: url(/assets/images/svg/box.svg) no-repeat center;
-
-  &.small {
-    padding-left: 34px;
-  }
+  width: 21px;
+  height: 18px;
 
   &.done {
     background-image: url(/assets/images/svg/box-checked.svg) !important;
@@ -159,10 +155,12 @@
   padding: 13px;
   margin-right: 4px;
   visibility: hidden;
+  margin-left: auto;
   @extend %ic;
 
-  &.small {
+  &.min {
     margin-right: 2px;
+    padding: 11px;
   }
 
   &:hover {

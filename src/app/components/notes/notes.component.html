@@ -56,7 +56,7 @@
                                     *ngFor="let cb of note.checkBoxes! | cboxSort | slice:0:7;trackBy: trackBy;let i = index">
                                     <div class="cbox-container">
                                         <div (mouseup)="checkBoxTools(note,$event).check(cb)" [class.done]="cb.done"
-                                            class="cbox-icon min"></div>
+                                            class="cbox-icon"></div>
                                         <div class="cbox-note-container min">
                                             <div [attr.data-id]="cb.id" [class.cbox-done]="cb.done"
                                                 [class.min]="cb.data.length > 68" class="cbox-note"
@@ -69,9 +69,9 @@
                                     </div>
                                     <ng-container *ngIf="i === 6">
                                         <div class="cbox-container">
-                                            <div class="cbox-icon min"></div>
+                                            <div class="cbox-icon"></div>
                                             <div class="cbox-note-container min">
-                                                <div class="cbox-note min">...</div>
+                                                <div class="cbox-note">...</div>
                                             </div>
                                         </div>
                                     </ng-container>
