@@ -53,6 +53,8 @@ Thanks to [Vercel](https://vercel.com/), you can play with the project online
 
 # Project structure
 
+It follows a simple structure.
+
 ```
 📦
 └─ src
@@ -69,8 +71,6 @@ Thanks to [Vercel](https://vercel.com/), you can play with the project online
    │  └─ services
    └─ index.html
 ```
-
-It follows a simple structure :
 
 [![structure](https://i.imgur.com/mFhehjb.png)](https://github1s.com/aBrihoum/google-keep-clone/blob/HEAD/src/app/app.module.ts)
 
