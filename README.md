@@ -3,7 +3,7 @@
 
 ## Google Keep Clone
 
-[![angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular)](https://angular.io/) [![sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](ttps://sass-lang.com/) [![vercel](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://google-keep-clone-lovat.vercel.app/) [![github1s](https://img.shields.io/badge/github1s-View%20project-blue?style=for-the-badge&logo=github)](https://github1s.com/aBrihoum/google-keep-clone/blob/HEAD/src/app/app.module.ts)
+[![angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular)](https://angular.io/) [![sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/) [![vercel](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://google-keep-clone-lovat.vercel.app/) [![github1s](https://img.shields.io/badge/github1s-View%20project-blue?style=for-the-badge&logo=github)](https://github1s.com/aBrihoum/google-keep-clone/blob/HEAD/src/app/app.module.ts)
 
 </div>
 
@@ -71,7 +71,7 @@ $~$
 
 Checkout my article on dev.to explaining the steps & technique I used to create this project :
 
-[<img width="500" src="https://i.ibb.co/jy9sJrF/dev-to.webp">](https://dev.to/brihoum/how-i-optimized-my-angular-website-3fd0)
+[<img width="500" src="https://i.ibb.co/jy9sJrF/dev-to.webp">](https://dev.to/brihoum/i-made-a-google-keep-clone-with-most-of-its-features-using-angular-2bla)
 
 </div>
 
