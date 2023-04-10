@@ -3,7 +3,7 @@
 
 ## Google Keep Clone
 
-[![angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular)](https://angular.io/) [![sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](ttps://sass-lang.com/) [![vercel](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://megapizza-v3.vercel.app) [![github1s](https://img.shields.io/badge/github1s-View%20project-blue?style=for-the-badge&logo=github)]("https://github1s.com/aBrihoum/megapizza_website/blob/master/src/app/app.module.ts)
+[![angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular)](https://angular.io/) [![sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](ttps://sass-lang.com/) [![vercel](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://google-keep-clone-lovat.vercel.app/) [![github1s](https://img.shields.io/badge/github1s-View%20project-blue?style=for-the-badge&logo=github)](https://github1s.com/aBrihoum/google-keep-clone/blob/HEAD/src/app/app.module.ts)
 
 </div>
 
@@ -29,7 +29,7 @@ It was made with the help of :
 
 ▶ Visite the website
 
-[![MegaPizza Preview](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://google-keep-clone-lovat.vercel.app/)
+[![Google Keep Clone Preview](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://google-keep-clone-lovat.vercel.app/)
 
 </div>
 
