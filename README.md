@@ -1,23 +1,9 @@
 <div align="center">
-  <img width="100" src="https://play-lh.googleusercontent.com/9bJoeaPbGTB8Tz_h4N-p-6ReRd8vSS-frZb2tmJulaGIoTKElKj3zpmcFJvnS96ANZP5"alt="google keep clone">
+  <img width="60" src="https://i.ibb.co/8jjMHSG/keep-logo.webp">
 
 ## Google Keep Clone
 
-<br />
-
-<a href="https://angular.io/" target="_blank" rel="noopener noreferrer">
-<img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular">
-</a>
-<a href="https://sass-lang.com/" target="_blank" rel="noopener noreferrer">
-<img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white">
-</a>
-<a href="https://google-keep-clone-lovat.vercel.app/" target="_blank" rel="noopener noreferrer">
-<img src="https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel">
-</a>
-</a>
-<a href="https://github1s.com/aBrihoum/google-keep-clone/blob/HEAD/src/app/app.module.ts" target="_blank" rel="noopener noreferrer">
-<img src="https://img.shields.io/badge/github1s-Browse%20project-blue?style=for-the-badge&logo=github">
-</a>
+[![angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular)](https://angular.io/) [![sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](ttps://sass-lang.com/) [![vercel](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://megapizza-v3.vercel.app) [![github1s](https://img.shields.io/badge/github1s-View%20project-blue?style=for-the-badge&logo=github)]("https://github1s.com/aBrihoum/megapizza_website/blob/master/src/app/app.module.ts)
 
 </div>
 
@@ -31,29 +17,25 @@ It was made with the help of :
 - [Dexie.js](https://dexie.org/)
 - [Bricks.js](https://github.com/callmecavs/bricks.js/)
 
-# Demonstration
-
-[![Preview](https://i.imgur.com/gbpxdOy.png)](https://www.youtube.com/watch?v=FPJamYMh-As)
-
-<div align="center">
-
-Thanks to [Vercel](https://vercel.com/), you can play with the project online
-
-[![Preview](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://google-keep-clone-lovat.vercel.app/)
-
-</div>
-
 # Preview
 
 <div align="center">
 
-<img src="https://i.ibb.co/x2YNKm5/prev1.webp" width="30%"></img> <img src="https://i.ibb.co/hR0gwzg/prev2.webp" width="30%"></img> <img src="https://i.ibb.co/L60Tswb/prev3.webp" width="30%"></img>
+[![Preview](https://i.ibb.co/yyMYPCf/youtube-cover.webp)](https://www.youtube.com/watch?v=FPJamYMh-As)
+
+<img src="https://i.ibb.co/smykqgH/prev1.webp" width="32%"><img src="https://i.ibb.co/wpqZhQ0/prev2.webp" width="32%"><img src="https://i.ibb.co/rQpS8Yv/prev3.webp" width="32%">
+
+<br/>
+
+▶ Visite the website
+
+[![MegaPizza Preview](https://img.shields.io/badge/Vercel-preview%20online-green?style=for-the-badge&logo=vercel)](https://google-keep-clone-lovat.vercel.app/)
 
 </div>
 
 # Project structure
 
-It follows a simple structure.
+It follows a simple structure :
 
 ```
 📦
@@ -83,17 +65,15 @@ It follows a simple structure.
 ---
 
 <div align="center">
+<img width="50" src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png">
 
-<img width="50" src="https://res.cloudinary.com/practicaldev/image/fetch/s--pcSkTMZL--/c_limit,f_auto,fl_progressive,q_80,w_190/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png">
+$~$
 
 Checkout my article on dev.to explaining the steps & technique I used to create this project :
 
-<a href="https://dev.to/brihoum/i-made-a-google-keep-clone-with-most-of-its-features-using-angular-2bla" target="_blank" rel="noopener noreferrer">
-<img width="500" src="https://i.imgur.com/Vej5gLp.png">
-</a>
-</div>
+[<img width="500" src="https://i.ibb.co/jy9sJrF/dev-to.webp">](https://dev.to/brihoum/how-i-optimized-my-angular-website-3fd0)
 
----
+</div>
 
 # Quick start
 
