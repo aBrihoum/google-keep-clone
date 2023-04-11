@@ -39,19 +39,22 @@ It follows a simple structure :
 
 ```
 📦
-└─ src
-   ├─ app
-   │  ├─ components
-   │  │  ├─ input
-   │  │  ├─ main
-   │  │  ├─ navbar
-   │  │  ├─ notes
-   │  │  └─ sidenav
-   │  ├─ db
-   │  ├─ interfaces
-   │  ├─ pipes
-   │  └─ services
-   └─ index.html
+└─ src/
+   ├─ app/
+   │  ├─ components/
+   │  │  ├─ input/
+   │  │  ├─ main/
+   │  │  ├─ navbar/
+   │  │  ├─ sidenav/
+   │  │  └─ notes/
+   │  ├─ db/
+   │  ├─ interfaces/
+   │  ├─ pipes/
+   │  ├─ services/
+   │  ├─ app-routing.module.ts
+   │  ├─ app.component.ts
+   │  └─ app.module.ts
+   └─ index.html
 ```
 
 [![structure](https://i.imgur.com/mFhehjb.png)](https://github1s.com/aBrihoum/google-keep-clone/blob/HEAD/src/app/app.module.ts)
